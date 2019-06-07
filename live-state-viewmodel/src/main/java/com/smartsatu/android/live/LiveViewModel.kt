@@ -14,7 +14,7 @@ import com.smartsatu.android.core.content.isPermissionsRequired
 
 abstract class LiveViewModel(application: Application) : AndroidViewModel(application), LifecycleObserver {
     val isRefreshing = MutableLiveData<Boolean>()
-    val listener: MutableLiveData<LiveCallback> = MutableLiveData()
+    val listener: MutableLiveData<LiveCallback> = CallbackLiveData()
     val liveState = MutableLiveData<LiveState>().apply { createDefaultLiveState() }
 
     open fun onButtonStateClicked() {
