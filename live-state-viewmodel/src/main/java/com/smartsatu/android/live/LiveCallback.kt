@@ -6,5 +6,7 @@ package com.smartsatu.android.live
  */
 open class LiveCallback {
 
+    open class AuthorizationRequested : LiveCallback()
+
     open class RequestPermissions(val permissions: Array<String>) : LiveCallback()
 }
