@@ -1,6 +1,10 @@
 package com.smartsatu.android.live
 
-import com.smartsatu.android.live.LiveStateType.*
+import com.smartsatu.android.live.LiveStateType.DEFAULT
+import com.smartsatu.android.live.LiveStateType.EMPTY
+import com.smartsatu.android.live.LiveStateType.ERROR
+import com.smartsatu.android.live.LiveStateType.LOADING
+import com.smartsatu.android.live.LiveStateType.SUCCESS
 
 data class LiveState(val type: LiveStateType = DEFAULT,
                      val imageRes: Int? = null,
@@ -9,7 +13,7 @@ data class LiveState(val type: LiveStateType = DEFAULT,
                      val button: String = "") {
 
     fun isVisible(): Boolean {
-        return title.isNotEmpty() || text.isNotEmpty() || button.isNotEmpty()
+        return imageRes?.let { it > 0 } == true || title.isNotEmpty() || text.isNotEmpty() || button.isNotEmpty()
     }
 }
 
