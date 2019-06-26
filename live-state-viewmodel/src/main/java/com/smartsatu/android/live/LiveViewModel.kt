@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import com.smartsatu.android.core.content.isPermissionsRequired
+import com.smartsatu.android.live.internal.CallbackLiveData
 
 /**
  * Created by sayplz
