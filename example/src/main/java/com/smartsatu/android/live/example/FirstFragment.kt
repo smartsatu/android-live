@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +17,9 @@ class FirstFragment : Fragment() {
 
     private lateinit var binding: FirstFragmentBinding
     private lateinit var viewModel: FirstViewModel
+    private val sharedViewModel by lazy {
+        ViewModelProviders.of(requireActivity()).get(SharedViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -27,10 +31,23 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(FirstViewModel::class.java)
         binding.viewModel = viewModel
+        binding.sharedViewModel = sharedViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.listener.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+            when (it) {
+                is FirstViewModel.Callbacks.OpenSecondFragment -> {
+                    findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+                }
+            }
+        })
+
+        sharedViewModel.listener.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is SharedViewModel.Callback.ShowToast -> {
+                    Toast.makeText(requireContext(), "Fragment's: ${it.toast}", Toast.LENGTH_SHORT).show()
+                }
+            }
         })
     }
 }
