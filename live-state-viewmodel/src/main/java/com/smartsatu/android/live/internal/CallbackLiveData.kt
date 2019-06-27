@@ -32,11 +32,11 @@ internal class CallbackLiveData<T : LiveCallback> : androidx.lifecycle.MutableLi
 
     private val internalMutableLiveData = MutableLiveData<T>()
 
-    override fun setValue(value: T) {
+    override fun setValue(value: T?) {
         internalMutableLiveData.value = value
     }
 
-    override fun postValue(value: T) {
+    override fun postValue(value: T?) {
         internalMutableLiveData.postValue(value)
     }
 
