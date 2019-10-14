@@ -17,15 +17,14 @@ data class LiveState(val type: LiveStateType = DEFAULT,
     }
 }
 
+//TODO: Provide default/init values to Live states
 fun NetworkState.toLiveState(
         emptyState: LiveState = LiveState(EMPTY),
         errorState: LiveState = LiveState(ERROR),
         loadingState: LiveState = LiveState(LOADING),
-        successState: LiveState = LiveState(SUCCESS),
-        defaultState: LiveState = LiveState(DEFAULT)): LiveState? = when (this) {
-    NetworkState.EMPTY -> emptyState
-    NetworkState.ERROR -> errorState
-    NetworkState.LOADING -> loadingState
-    NetworkState.LOADED -> successState
-    else -> defaultState
+        successState: LiveState = LiveState(SUCCESS)): LiveState = when (status) {
+    Status.EMPTY -> emptyState
+    Status.FAILED -> errorState
+    Status.RUNNING -> loadingState
+    Status.SUCCESS -> successState
 }
