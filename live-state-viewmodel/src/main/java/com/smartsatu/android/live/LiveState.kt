@@ -6,11 +6,16 @@ import com.smartsatu.android.live.LiveStateType.ERROR
 import com.smartsatu.android.live.LiveStateType.LOADING
 import com.smartsatu.android.live.LiveStateType.SUCCESS
 
-data class LiveState(val type: LiveStateType = DEFAULT,
-                     val imageRes: Int? = null,
-                     val title: String = "",
-                     val text: String = "",
-                     val button: String = "") {
+data class LiveState(
+        val type: LiveStateType = DEFAULT,
+        val imageRes: Int? = null,
+        val title: String = "",
+        val text: String = "",
+        val button: String = "",
+        val alternateResource: AlternateResource? = null
+) {
+
+    val alternateResources: MutableList<AlternateResource> = mutableListOf()
 
     fun isVisible(): Boolean {
         return imageRes?.let { it > 0 } == true || title.isNotEmpty() || text.isNotEmpty() || button.isNotEmpty()
