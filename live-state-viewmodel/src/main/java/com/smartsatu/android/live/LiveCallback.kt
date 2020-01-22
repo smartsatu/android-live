@@ -9,4 +9,6 @@ open class LiveCallback {
     open class AuthorizationRequested : LiveCallback()
 
     open class RequestPermissions(val permissions: Array<String>) : LiveCallback()
+
+    open class AlternateResourceRequested(val alternateResource: AlternateResource) : LiveCallback()
 }
