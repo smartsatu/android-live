@@ -1,7 +1,5 @@
 package com.smartsatu.android.live
 
-import android.net.Uri
-
 sealed class AlternateResource {
-    class UriResource(val uri: Uri) : AlternateResource()
+    class Uri(val uri: android.net.Uri) : AlternateResource()
 }

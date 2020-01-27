@@ -12,10 +12,9 @@ data class LiveState(
         val title: String = "",
         val text: String = "",
         val button: String = "",
-        val alternateResource: AlternateResource? = null
+        val alternateResource1: AlternateResource? = null,
+        val alternateResource2: AlternateResource? = null
 ) {
-
-    val alternateResources: MutableList<AlternateResource> = mutableListOf()
 
     fun isVisible(): Boolean {
         return imageRes?.let { it > 0 } == true || title.isNotEmpty() || text.isNotEmpty() || button.isNotEmpty()
