@@ -19,7 +19,7 @@ import com.smartsatu.android.live.internal.CallbackLiveData
 abstract class LiveViewModel(application: Application) : AndroidViewModel(application), LifecycleObserver {
     val isRefreshing = MutableLiveData<Boolean>()
     val listener: MutableLiveData<LiveCallback> = CallbackLiveData()
-    protected val liveState = MutableLiveData<LiveState>().apply { value = LiveState() }
+    val liveState = MutableLiveData<LiveState>().apply { value = LiveState() }
 
     /**
      * Refresh content
