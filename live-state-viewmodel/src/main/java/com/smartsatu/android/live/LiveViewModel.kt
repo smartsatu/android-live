@@ -60,8 +60,8 @@ abstract class LiveViewModel(application: Application) : AndroidViewModel(applic
             listener.value = LiveCallback.AlternateResourceRequested(alternateResource)
         } else {
             refresh()
+            liveState.value = LiveState()
         }
-        liveState.value = LiveState()
     }
 
     protected fun getContext(): Context = getApplication<Application>().applicationContext
