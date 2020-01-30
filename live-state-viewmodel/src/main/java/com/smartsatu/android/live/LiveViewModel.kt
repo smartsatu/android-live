@@ -24,7 +24,7 @@ abstract class LiveViewModel(application: Application) : AndroidViewModel(applic
     /**
      * Refresh content
      */
-    protected fun refresh() {
+    fun refresh() {
         // TODO: Make it abstract. For compatibility purpose it's not now
     }
 
