@@ -36,7 +36,7 @@ class FirstFragment : Fragment() {
 
         viewModel.listener.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is FirstViewModel.Callbacks.OpenSecondFragment -> {
+                is FirstViewModel.Event.OpenSecondFragment -> {
                     findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
                 }
             }
@@ -44,7 +44,7 @@ class FirstFragment : Fragment() {
 
         sharedViewModel.listener.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is SharedViewModel.Callback.ShowToast -> {
+                is SharedViewModel.Event.ShowToast -> {
                     Toast.makeText(requireContext(), "Fragment's: ${it.toast}", Toast.LENGTH_SHORT).show()
                 }
             }

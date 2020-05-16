@@ -1,16 +1,16 @@
 package com.smartsatu.android.live.example
 
-import android.app.Application
-import com.smartsatu.android.live.LiveCallback
-import com.smartsatu.android.live.LiveViewModel
+import com.smartsatu.android.live.LiveEvent
+import com.smartsatu.android.live.StateViewModel
 
-class FirstViewModel(application: Application) : LiveViewModel(application) {
+class FirstViewModel : StateViewModel() {
+
 
     fun openFragment2() {
-        listener.value = Callbacks.OpenSecondFragment
+        sendEvent(Event.OpenSecondFragment)
     }
 
-    sealed class Callbacks : LiveCallback() {
-        object OpenSecondFragment : Callbacks()
+    sealed class Event : LiveEvent() {
+        object OpenSecondFragment : Event()
     }
 }

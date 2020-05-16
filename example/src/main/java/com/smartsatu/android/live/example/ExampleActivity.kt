@@ -2,6 +2,8 @@ package com.smartsatu.android.live.example
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -16,16 +18,14 @@ class ExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_example)
+        val binding: ViewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_example)
         NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.navigationHostFragment))
 
         sharedViewModel.listener.observe(this, Observer { callback ->
             // Empty listener for events designated to the
             when (callback) {
-                is SharedViewModel.Callback.ShowToast -> {
-                    supportFragmentManager.findFragmentById(R.id.navigationHostFragment)?.view?.let {
-                        Snackbar.make(it, "Activity's: ${callback.toast}", Snackbar.LENGTH_SHORT).show()
-                    }
+                is SharedViewModel.Event.ShowToast -> {
+                    Snackbar.make(binding.root, "Activity's: ${callback.toast}", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
