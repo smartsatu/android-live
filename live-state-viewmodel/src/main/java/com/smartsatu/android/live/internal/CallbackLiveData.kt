@@ -2,7 +2,7 @@ package com.smartsatu.android.live.internal
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.smartsatu.android.live.LiveCallback
+import com.smartsatu.android.live.LiveEvent
 
 
 /**
@@ -28,7 +28,7 @@ import com.smartsatu.android.live.LiveCallback
  *
  * Latest issue: propagation condition must be implemented
  */
-internal class CallbackLiveData<T : LiveCallback> : androidx.lifecycle.MutableLiveData<T>() {
+internal class CallbackLiveData<T : LiveEvent> : androidx.lifecycle.MutableLiveData<T>() {
 
     private val internalMutableLiveData = MutableLiveData<T>()
 
